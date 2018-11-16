@@ -6,6 +6,17 @@
   </head>
   <body>
 
+    <h1>Car exercise</h1>
+    <p>Press a key:</p>
+    <ul>
+      <li>h to honk</li>
+      <li>d to drive to work</li>
+      <li>w to drive around the world</li>
+      <li>t to get a tuneup</li>
+    </ul>
+
+    <p>For car stats, open the Javascript console.</p>
+
     <script>
 
       var car = {
@@ -17,32 +28,61 @@
 
         driveToWork: function() {
 
-          alert("Old Mileage: " + this.mileage);
-
-          this.mileage = this.mileage + 8;
-
-          alert("New mileage: " + this.mileage);
+          if(this.isWorking) {
+            alert("Old Mileage: " + this.mileage);
+  
+            this.mileage = this.mileage + 8;
+  
+            alert("New mileage: " + this.mileage);
+          }
+          else {
+            alert("Car won't run. Maybe get a tuneup?");
+          }
         },
 
         driveAroundWorld: function() {
+          if(this.isWorking) {
+            alert("Old Mileage: " + this.mileage);
+  
+            this.mileage = this.mileage + 24000;
+  
+            alert("New Mileage: " + this.mileage);
+            alert("Car needs a tuneup!");
+  
+            this.isWorking = false;
+          }
+          else {
+            alert("Car won't run. Maybe get a tuneup?");
+          }
 
-          alert("Old Mileage: " + this.mileage);
-
-          this.mileage = this.mileage + 24000;
-
-          alert("New Mileage: " + this.mileage);
-          alert("Car needs a tuneup!");
-
-          this.isWorking = false;
         },
 
         getTuneUp: function() {
-          alert("Car is ready to go!");
-          this.isWorking = true;
+          if(this.isWorking) {
+            alert("You didn't need a tuneup but I took your money anyway");
+          }
+          else {
+            alert("Car is ready to go!");
+            this.isWorking = true;
+          }
         },
 
         honk: function() {
-          alert("Honk! Honk!");
+          if(this.isWorking) {
+            alert("Honk! Honk!");
+          }
+          else {
+            alert("Sad honk...");
+          }
+        },
+
+        logStats: function() {
+          console.log("Make: " + this.make);
+          console.log("Model: " + this.model);
+          console.log("Color: " + this.color);
+          console.log("Mileage: " + this.mileage);
+          console.log("Working: " + this.isWorking);
+          console.log("--------------------");
         }
       };
 
@@ -50,29 +90,42 @@
       // How would we log...
 
       // The car's make?
-      console.log(car.make);
+      // console.log(car.make);
 
-      // The car's model?
-      console.log(car.model);
+      // // The car's model?
+      // console.log(car.model);
 
-      // The car's mileage?
-      console.log(car.mileage);
+      // // The car's mileage?
+      // console.log(car.mileage);
 
-      // How would we run the car's driveToWork method?
-      car.driveToWork();
+      // // How would we run the car's driveToWork method?
+      // car.driveToWork();
 
-      // How would we run the car's driveAroundWorld method?
-      car.driveAroundWorld();
+      // // How would we run the car's driveAroundWorld method?
+      // car.driveAroundWorld();
 
-      // How would we run the getTuneUp method?
-      car.getTuneUp();
+      // // How would we run the getTuneUp method?
+      // car.getTuneUp();
 
-      var cat = {
-        name : "Bwonsamdi",
-        coat : "Grey tiger",
-        claws : "Very sharp",
-        human : "Dylan"
+      document.onkeyup = function(event) {
+        if(event.key === "h") {
+          car.honk();
+          car.logStats();
+        }
+        else if(event.key === "d") {
+          car.driveToWork();
+          car.logStats();
+        }
+        else if(event.key === "w") {
+          car.driveAroundWorld();
+          car.logStats();
+        }
+        else if(event.key === "t") {
+          car.getTuneUp();
+          car.logStats();
+        }
       }
+
     </script>
     
   </body>
